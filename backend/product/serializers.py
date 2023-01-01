@@ -4,8 +4,15 @@ from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    discount = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Product
         # fields = '__all__'
-        fields = ['id', 'title', 'content', 'sale_price']
+        fields = ['id', 'title', 'content', 'price', 'sale_price', 'discount']
+
+    def get_discount(self, obj):
+        try:
+            return obj.get_discount()
+        except:
+            return None

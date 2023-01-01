@@ -1,21 +1,16 @@
 import requests
 
-# endpoint = 'https://httpbin.org/status/200/'
-# endpoint = 'https://httpbin.org/anything'
 
-endpoint = 'http://localhost:8000/api/'
+endpoint = 'http://localhost:8000/api/product/'
 
 
 
-params = {
-    'item':12
+payload = {
+    'title' : "perform create method",
+    'content':'this is our new product',
+    'price': 22.00
 }
 
-response = requests.get(endpoint)
+response = requests.post(endpoint, json=payload)
 
-# print(response.status_code) #print whole response
-# print(response.text)
 print(response.json())
-
-# print(response.json()['message'])
-
